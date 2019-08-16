@@ -26,7 +26,7 @@ class RequestHelper private constructor(): RequestInter{
 
 
 
-    override fun get(url: String, lisenter: RequestLisenter<BaseBean<*>>, clz: Class<*>) {
+    override fun get(url: String, lisenter: RequestLisenter<BaseBean>, clz: Class<*>) {
         CoroutineScope(Dispatchers.IO).launch {
             var response: Response? = null
             try {
@@ -38,7 +38,7 @@ class RequestHelper private constructor(): RequestInter{
             }
             //本地请求
             try {
-                var basebean = GsonFactory.create().fromJson(response?.body.toString(), clz) as BaseBean<*>
+                var basebean = GsonFactory.create().fromJson(response?.body.toString(), clz) as BaseBean
                 if (basebean.code == 10000) {
                     CoroutineScope(Dispatchers.Main).launch {
                         lisenter?.onSuccess(basebean)
@@ -56,7 +56,7 @@ class RequestHelper private constructor(): RequestInter{
         }
     }
 
-    override fun post(url: String, params:HashMap<String , String>, lisenter: RequestLisenter<BaseBean<*>>, clz: Class<*>) {
+    override fun post(url: String, params:HashMap<String , String>, lisenter: RequestLisenter<BaseBean>, clz: Class<*>) {
 
         CoroutineScope(Dispatchers.IO).launch {
             var jsonParams = GsonFactory.create().toJson(params)
@@ -73,8 +73,8 @@ class RequestHelper private constructor(): RequestInter{
             }
             //本地请求
             try {
-                var basebean = GsonFactory.create().fromJson(response?.body.toString(), clz) as BaseBean<*>
-                if (basebean.code == 10000) {
+                var basebean = GsonFactory.create().fromJson(response?.body?.string(), clz) as BaseBean
+                if (basebean.code == 1000) {
                     CoroutineScope(Dispatchers.Main).launch {
                         lisenter?.onSuccess(basebean)
                     }
@@ -84,6 +84,7 @@ class RequestHelper private constructor(): RequestInter{
                     }
                 }
             } catch (e: Exception) {
+                e.printStackTrace()
                 CoroutineScope(Dispatchers.Main).launch {
                     lisenter?.onDataError(e)
                 }

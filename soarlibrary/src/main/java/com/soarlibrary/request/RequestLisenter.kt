@@ -1,6 +1,6 @@
 package com.soarlibrary.request
 
-interface RequestLisenter<T:BaseBean<*>> {
+interface RequestLisenter<T:BaseBean> {
 
     fun onSuccess(baseBean: T)
     fun onFail(baseBean: T)

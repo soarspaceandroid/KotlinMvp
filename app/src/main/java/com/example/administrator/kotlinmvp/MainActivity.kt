@@ -10,7 +10,7 @@ import com.soarlibrary.request.RequestLisenter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 
-class MainActivity : AppCompatActivity() ,RequestLisenter<BaseBean<UserInfo>> {
+class MainActivity : AppCompatActivity() ,RequestLisenter<UserInfo> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,16 +34,21 @@ class MainActivity : AppCompatActivity() ,RequestLisenter<BaseBean<UserInfo>> {
 
 
 
-        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean<*>> , UserInfo().javaClass)
+        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
+
+
+
+
 
     }
 
 
-    override fun onSuccess(baseBean: BaseBean<UserInfo>) {
-        Log.e("soar" , "success --- "+baseBean.data?.phone)
+    override fun onSuccess(baseBean: UserInfo) {
+        Log.e("soar" , "success --- "+baseBean?.data?.phone)
+        sample_text.setText(baseBean?.data?.phone)
     }
 
-    override fun onFail(baseBean: BaseBean<UserInfo>) {
+    override fun onFail(baseBean: UserInfo) {
     }
 
     override fun onDataError(e:Exception) {
