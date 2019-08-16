@@ -35,6 +35,13 @@ class MainActivity : AppCompatActivity() ,RequestLisenter<UserInfo> {
 
 
         RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
+        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
+        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
+        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
+        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
+        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
+        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
+
 
 
 

@@ -19,6 +19,6 @@ class OkClientFactory{
     constructor(){
         builder?.connectTimeout(10 , TimeUnit.SECONDS)
         builder?.readTimeout(10 , TimeUnit.SECONDS)
-        builder?.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        builder?.addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
     }
 }

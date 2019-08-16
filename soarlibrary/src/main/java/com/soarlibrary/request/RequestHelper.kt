@@ -73,7 +73,8 @@ class RequestHelper private constructor(): RequestInter{
             }
             //本地请求
             try {
-                var basebean = GsonFactory.create().fromJson(response?.body?.string(), clz) as BaseBean
+                val jsonRespose = response?.body?.string()
+                var basebean = GsonFactory.create().fromJson(jsonRespose, clz) as BaseBean
                 if (basebean.code == 1000) {
                     CoroutineScope(Dispatchers.Main).launch {
                         lisenter?.onSuccess(basebean)
