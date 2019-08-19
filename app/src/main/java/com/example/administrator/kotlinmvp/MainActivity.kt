@@ -1,8 +1,8 @@
 package com.example.administrator.kotlinmvp
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.soarlibrary.base.BaseActivity
 import com.soarlibrary.request.BaseBean
 import com.soarlibrary.request.ParamString
 import com.soarlibrary.request.RequestHelper
@@ -10,7 +10,7 @@ import com.soarlibrary.request.RequestLisenter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 
-class MainActivity : AppCompatActivity() ,RequestLisenter<UserInfo> {
+class MainActivity : BaseActivity<MainView>() ,RequestLisenter<UserInfo> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,18 +35,17 @@ class MainActivity : AppCompatActivity() ,RequestLisenter<UserInfo> {
 
 
         RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
-        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
-        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
-        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
-        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
-        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
-        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
+
+
+        getBaseView().print()
 
 
 
 
+    }
 
-
+    override fun createView(): MainView {
+        return MainView(this)
     }
 
 
@@ -64,6 +63,10 @@ class MainActivity : AppCompatActivity() ,RequestLisenter<UserInfo> {
 
     override fun onNetError(e:Exception) {
         Log.e("soar" , "e----> "+e.message)
+    }
+
+    fun callBack(){
+        Log.e("soar" , "mainactivity --- callback")
     }
 
 }
