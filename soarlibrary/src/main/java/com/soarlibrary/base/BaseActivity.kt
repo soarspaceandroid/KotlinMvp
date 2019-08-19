@@ -26,7 +26,7 @@ abstract class BaseActivity<T:BaseView<*>> : AppCompatActivity(){
     /**
      * 可以复写
      */
-    fun getData(){
+    open fun getData(){
         baseView?.showWaitting()
 //        RequestHelper.getInstance().post()
     }

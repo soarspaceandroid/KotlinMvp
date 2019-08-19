@@ -34,14 +34,16 @@ class MainActivity : BaseActivity<MainView>() ,RequestLisenter<UserInfo> {
 
 
 
-        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
-
-
         getBaseView().print()
 
 
 
+    }
 
+
+    override fun getData() {
+        super.getData()
+        RequestHelper.getInstance().post("http://116.228.243.146/Account/userInfo" , ParamString().put("userId","6540059105892162561").build() , this as RequestLisenter<BaseBean> , UserInfo().javaClass)
     }
 
     override fun createView(): MainView {
